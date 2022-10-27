@@ -72,24 +72,6 @@ html = """
     </html>
     """
 
-# msg.add_alternative(html, subtype='html')
-
-###
-### SEND EMAIL
-###
-
-with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-    smtp.login(user_email, user_pass)
-    print("Login success")
-    smtp.send_message(msg)
-    print("Email has been sent to ", contacts)
-
-
-
-
-
-
-
 
 ###
 ### SEND TO TERMINAL
