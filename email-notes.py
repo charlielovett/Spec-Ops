@@ -3,7 +3,8 @@ import os
 import imghdr
 from email.message import EmailMessage
 import codecs
-from github import Github
+from pip._vendor import Github
+
 
 user_email = "colovett@gmail.com"
 user_pass = os.environ.get("PASSWORD")
@@ -15,11 +16,16 @@ def NUDM_invite(emails, git_username):
     msg['From'] = user_email
     msg['To'] = ', '.join(emails)
     msg.add_alternative(html, subtype='html')
+
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(user_email, user_pass)
         print("Login success")
         smtp.send_message(msg)
         print("Email has been sent to ", emails)
+    
+    organization = Github.get_organization("NUDM")
+    for email in contacts:
+        organization.invite_user(git_username,email,"member")
 
 
 ###
