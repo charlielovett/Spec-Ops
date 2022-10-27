@@ -2,28 +2,31 @@ import smtplib, ssl
 import os
 import imghdr
 from email.message import EmailMessage
+import codecs
+from github import Github
 
-
-# set variables
 user_email = "colovett@gmail.com"
 user_pass = os.environ.get("PASSWORD")
-contacts = ["charlielovett2025@u.northwestern.edu", "hunterdisco2025@u.northwestern.edu"]
-# IF MULTIPLE EMAILS:
-#   contacts = [email1, email2, ...]
-#   msg['To'] = ', '.join(contacts)
+contacts = ["charlielovett2025@u.northwestern.edu"]
 
-# set message
-msg = EmailMessage()
-msg['Subject'] = 'Hey'
-msg['From'] = user_email
-msg['To'] = ', '.join(contacts)
-#msg.set_content('This is the body of the email')
+def NUDM_invite(emails, git_username):
+    msg = EmailMessage()
+    msg['Subject'] = 'Welcome to T&A!'
+    msg['From'] = user_email
+    msg['To'] = ', '.join(emails)
+    msg.add_alternative(html, subtype='html')
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(user_email, user_pass)
+        print("Login success")
+        smtp.send_message(msg)
+        print("Email has been sent to ", emails)
+
 
 ###
 ### HTML
 ###
 
-# with open('testing.html', 'r') as f:
+# with codecs.open('testing.html', 'r', 'utf-8') as f:
 #     html_string = f.read()
 
 html = """
@@ -59,17 +62,17 @@ html = """
     </head>
     <body>
         <header>
-            <h1>What's up</h1>
+            <h1>Join the Slack!</h1>
         </header>
-        <a href="https://en.wikipedia.org/wiki/Supercentenarian" target="_blank">
-            <button class="button button1">Link</button>
+        <a href="https://join.slack.com/t/nudmappdevelo-ibm8455/shared_invite/zt-1iecb5jpf-Oc58EWLL9NZ5k0UwDR28aw" target="_blank">
+            <button style = "position:relative; left:50px"
+                class="button button1">Link</button>
         </a>
-        <p>Charlie Lovett</p>
     </body>
     </html>
     """
 
-msg.add_alternative(html, subtype='html')
+# msg.add_alternative(html, subtype='html')
 
 ###
 ### SEND EMAIL
