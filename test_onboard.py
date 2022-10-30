@@ -1,7 +1,7 @@
 import smtplib, ssl
 import os
 from email.message import EmailMessage
-from pip._vendor import Github
+import Github
 
 
 user_email = "colovett@gmail.com"
@@ -21,7 +21,7 @@ def NUDM_invite(emails, git_username):
         smtp.send_message(msg)
         print("Email has been sent to ", emails)
     
-    organization = Github.get_organization("NUDM")
+    organization = Github.get_organization("Onboarding-Test-Organization")
     for email in contacts:
         organization.invite_user(git_username,email,"member")
 
@@ -58,7 +58,7 @@ html = """
         </style>
     </head>
     <body>
-        <a href="https://join.slack.com/t/nudmappdevelo-ibm8455/shared_invite/zt-1iecb5jpf-Oc58EWLL9NZ5k0UwDR28aw" target="_blank">
+        <a href="https://join.slack.com/t/testworkspace-lwc9894/shared_invite/zt-1iqr11tfq-Nxt60Qg3sWObLa_STwcUcg" target="_blank">
             <button class="button button1">Join the Slack!</button>
         </a>
     </body>
