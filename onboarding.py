@@ -28,13 +28,6 @@ def NUDM_invite(emails, git_username):
         organization.invite_user(git_username,email,"member")
 
 
-###
-### HTML
-###
-
-# with codecs.open('testing.html', 'r', 'utf-8') as f:
-#     html_string = f.read()
-
 html = """
     <!DOCTYPE html>
     <html>
@@ -67,52 +60,9 @@ html = """
         </style>
     </head>
     <body>
-        <header>
-            <h1>Join the Slack!</h1>
-        </header>
         <a href="https://join.slack.com/t/nudmappdevelo-ibm8455/shared_invite/zt-1iecb5jpf-Oc58EWLL9NZ5k0UwDR28aw" target="_blank">
-            <button style = "position:relative; left:50px"
-                class="button button1">Link</button>
+            <button class="button button1">Join the Slack!</button>
         </a>
     </body>
     </html>
     """
-
-
-###
-### SEND TO TERMINAL
-###
-
-#with smtplib.SMTP('localhost', 1025) as smtp:
-#    smtp.send_message(msg)
-#    print("Email has been sent")
-
-###
-### ATTACH JPEG
-###
-
-#files = [filenames...]
-
-#for file in files:
-#    with open(file, 'rb') as image:
-#        file_data = image.read()
-#        file_type = imghdr.what(image.name)
-#        file_name = image.name
-    
-    # add files to message    
-#    msg.add_attachment(file_data, maintype='image', subtype=file_type, filename=file_name)
-
-###
-### ATTACH PDF
-###
-
-#files = ['stack-queue.pdf']
-
-#for file in files:
-#    with open(file, 'rb') as image:
-#        file_data = image.read()
-#        file_type = imghdr.what(image.name)
-#        file_name = image.name
-    
-    # add files to message    
-#    msg.add_attachment(file_data, maintype='application', subtype='octet-stream', filename=file_name)
