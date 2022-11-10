@@ -9,22 +9,12 @@ user_pass = os.environ.get("PASSWORD")
 contacts = ["charlielovett2025@u.northwestern.edu"]
 git_users = ["charlielovett"]
 
-def NUDM_invite(emails, git_usernames):
-    msg = EmailMessage()
-    msg['Subject'] = 'Welcome to T&A!'
-    msg['From'] = user_email
-    msg['To'] = ', '.join(emails)
-    msg.add_alternative(html, subtype='html')
-
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login(user_email, user_pass)
-        print("Login success")
-        smtp.send_message(msg)
-        print("Email has been sent to ", emails)
-    
+def NUDM_remove(git_usernames):
     organization = Github.get_organization("NUDM")
-    for email, git_username in zip(contacts, git_usernames):
-        organization.invite_user(git_username,email,"member")
+    for git_username in git_usernames:
+        organization.remove_from_membership(git_username)
+
+    # slack remove
 
 
 html = """
